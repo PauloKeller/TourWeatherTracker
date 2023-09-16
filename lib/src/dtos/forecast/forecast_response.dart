@@ -19,11 +19,11 @@ class ForecastResponse {
 }
 
 class ForecastListItem {
-  DateTime dt;
+  DateTime dateTime;
   List<WeatherResponse> weather;
 
   ForecastListItem({
-    required this.dt,
+    required this.dateTime,
     required this.weather,
   });
 
@@ -33,7 +33,7 @@ class ForecastListItem {
 
   factory ForecastListItem.fromMap(Map<String, dynamic> data) {
     return ForecastListItem(
-        dt: _convertFromUnix(data["dt"]),
+        dateTime: _convertFromUnix(data["dt"]),
         weather: _fromResultsToList(data["weather"]));
   }
 

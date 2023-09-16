@@ -11,8 +11,23 @@ class BaseRepository {
     return await _database.insert(table, entity.toMap());
   }
 
-  Future<int> remove(String table, Entity entity) async {
+  Future<int> delete(String table, Entity entity) async {
     return await _database
         .delete(table, where: 'id = ?', whereArgs: [entity.id]);
+  }
+
+  Future<int> deleteBy(String table, String parameterName, dynamic parameter) async {
+    return await _database
+        .delete(table, where: '$parameterName = ?', whereArgs: [parameter]);
+  }
+
+  Future<List<Map<String, Object?>>> findAll(String table) async {
+    return await _database.query(table);
+  }
+
+  Future<List<Map<String, Object?>>> findBy(
+      String table, String parameterName, dynamic parameter) async {
+    return await _database
+        .query(table, where: '$parameterName = ?', whereArgs: [parameter]);
   }
 }

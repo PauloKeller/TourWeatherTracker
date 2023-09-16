@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import 'package:tour_weather_tracker/src/dtos/dtos.dart';
 import 'package:tour_weather_tracker/src/providers/providers.dart';
 
 class MockDio extends Mock implements Dio {}
@@ -29,7 +28,7 @@ void main() {
 
       when(dio.get(any)).thenAnswer((_) async => Response(data: mock, statusCode: 200));
 
-      final response = await sut.getCurrentWeather();
+      final response = await sut.fetchCurrentWeather("Silverstone");
 
       expect(response.weather.length, 1);
 
@@ -99,13 +98,13 @@ void main() {
 
       when(dio.get(any)).thenAnswer((_) async => Response(data: mock, statusCode: 200));
 
-      final response = await sut.getForecastWeather();
+      final response = await sut.fetchForecastWeather("Silverstone");
 
       expect(response.list.length, 4);
 
       final item = response.list[1];
 
-      expect(item.dt.toIso8601String(), '2022-08-30T15:00:00.000');
+      expect(item.dateTime.toIso8601String(), '2022-08-30T15:00:00.000');
       expect(item.weather.length, 1);
     });
   });

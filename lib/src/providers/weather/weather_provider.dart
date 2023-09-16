@@ -3,9 +3,9 @@ import 'package:dio/dio.dart';
 import 'package:tour_weather_tracker/src/providers/providers.dart';
 import 'package:tour_weather_tracker/src/dtos/dtos.dart';
 
-abstract class HeroesProviderInterface {
-  Future<CurrentResponse> getCurrentWeather();
-  Future<ForecastResponse> getForecastWeather();
+abstract class WeatherProviderInterface {
+  Future<CurrentResponse> fetchCurrentWeather(String cityName);
+  Future<ForecastResponse> fetchForecastWeather(String cityName);
 }
 
 enum EndPoints {
@@ -13,30 +13,18 @@ enum EndPoints {
   forecast
 }
 
-class WeatherProvider extends BaseProvider implements HeroesProviderInterface {
+class WeatherProvider extends BaseProvider implements WeatherProviderInterface {
   WeatherProvider(Dio dio) : super(dio);
-
-  String _getEndPoint(EndPoints endPoint) {
-    switch (endPoint) {
-      case EndPoints.current:
-        return '/weather';
-      case EndPoints.forecast:
-        return '/forecast';
-    }
-  }
+  final apiKey = "41729c5a20961ea7cf6edc99c6553ffc";
 
   @override
-  Future<CurrentResponse> getCurrentWeather() async {
-    const apiKey = "41729c5a20961ea7cf6edc99c6553ffc";
-    const cityName = "Silverstone";
+  Future<CurrentResponse> fetchCurrentWeather(String cityName) async {
     final response = await get("/weather?q=$cityName&appid=$apiKey");
     return CurrentResponse.fromMap(response.data);
   }
 
   @override
-  Future<ForecastResponse> getForecastWeather() async {
-    const apiKey = "41729c5a20961ea7cf6edc99c6553ffc";
-    const cityName = "Silverstone";
+  Future<ForecastResponse> fetchForecastWeather(String cityName) async {
     final response = await get("/forecast?q=$cityName&appid=$apiKey");
     return ForecastResponse.fromMap(response.data);
   }

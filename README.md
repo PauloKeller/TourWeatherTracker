@@ -2,15 +2,22 @@
 
 Track weather in a fashion manner for a rock'n'roll band staff
 
-## Getting Started
+## Videos
 
-This project is a starting point for a Flutter application.
+### Android
+https://github.com/PauloKeller/TourWeatherTracker/assets/21090990/fb937cfe-104e-421a-a297-bd24e0b15e52
 
-A few resources to get you started if this is your first Flutter project:
+### iOS
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Checklist 
+- [x] API fetch data
+- [x] Cache
+- [x] Internet reachability
+- [x] Searching
+- [x] Blocs
+- Unit tests
+  - [x] Providers 
+- [ ] Integration tests 
+- [ ] UI tests
